@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 //Player moving methods
 public class Move2D : MonoBehaviour
 {
     [SerializeField]
-    float limiter=1000;
-  
+    float speed=10f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,13 +17,26 @@ public class Move2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && transform.position.y< limiter)
-            transform.position += new Vector3(0, 1, 0);
-        if (Input.GetKeyDown(KeyCode.DownArrow) && transform.position.y > -limiter)
-            transform.position += new Vector3(0, -1, 0);
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.x > -limiter)
-            transform.position += new Vector3(-1, 0, 0);
-        if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.x < limiter)
-            transform.position += new Vector3(1, 0, 0);
+        Vector3 pos = transform.position;
+
+        if (Input.GetKey("i"))
+        {
+            pos.y += speed * Time.deltaTime;
+        }
+        if (Input.GetKey("k"))
+        {
+            pos.y -= speed * Time.deltaTime;
+        }
+        if (Input.GetKey("l"))
+        {
+            pos.x += speed * Time.deltaTime;
+        }
+        if (Input.GetKey("j"))
+        {
+            pos.x -= speed * Time.deltaTime;
+        }
+       
+
+        transform.position = pos;
     }
 }

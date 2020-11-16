@@ -5,10 +5,8 @@ using UnityEngine;
 public class collision_psuh : MonoBehaviour
 {
     [SerializeField]
-    private string TagTrigger;
-    bool flag = false;
-    [SerializeField]
-    int space = 8;
+    private string TagTrigger="pusher";
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,19 +16,15 @@ public class collision_psuh : MonoBehaviour
     // Update is called once per frame
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collider2D collision)
     {
-        if (!flag)
-        {
-            GetComponent<Rigidbody2D>().AddForce(Vector3.left * 1000f*space* (transform.position.y * 10000));
-            space = space* space;
-        }
-        if (flag)
-        {
-            GetComponent<Rigidbody2D>().AddForce(Vector3.right * 1000f* space*(transform.position.y*10000));
-            space = space * space;
-        }
-
+        Debug.Log("trigger");
+        float x = gameObject.transform.position.x;
+        float y = gameObject.transform.position.y;
+        if (collision.gameObject.tag==TagTrigger && Input.GetKey("l") || Input.GetKey("d"))
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10,0));
+        else
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10, 0));
     }
 
 }

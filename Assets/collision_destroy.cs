@@ -17,7 +17,7 @@ public class collision_destroy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == De)
-            Destroy(collision);
+            Destroy(collision.gameObject);
             Destroy(this.gameObject);
             SceneManager.LoadScene(0);
     }

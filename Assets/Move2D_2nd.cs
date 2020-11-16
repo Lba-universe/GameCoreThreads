@@ -17,17 +17,26 @@ public class Move2D_2nd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         float horizontal = Input.GetAxis("Horizontal"); 
-         float vertical = Input.GetAxis("Vertical");   
-          Vector3 movementVector = new Vector3(horizontal, vertical, 0) * speed * Time.deltaTime;
-          transform.position += movementVector;
-     //   if (Input.GetKeyDown(KeyCode.W) && transform.position.y < limiter)
-      //      transform.position += new Vector3(0, 1, 0);
-      //  if (Input.GetKeyDown(KeyCode.S) && transform.position.y > -limiter)
-      //      transform.position += new Vector3(0, -1, 0);
-      //  if (Input.GetKeyDown(KeyCode.A) && transform.position.x > -limiter)
-      //      transform.position += new Vector3(-1, 0, 0);
-      //  if (Input.GetKeyDown(KeyCode.D) && transform.position.x < limiter)
-       //     transform.position += new Vector3(1, 0, 0);
+
+        Vector3 pos = transform.position;
+
+        if (Input.GetKey("w"))
+        {
+            pos.y += speed * Time.deltaTime;
+        }
+        if (Input.GetKey("s"))
+        {
+            pos.y -= speed * Time.deltaTime;
+        }
+        if (Input.GetKey("d"))
+        {
+            pos.x += speed * Time.deltaTime;
+        }
+        if (Input.GetKey("a"))
+        {
+            pos.x -= speed * Time.deltaTime;
+        }
+
+        transform.position = pos;
     }
 }
